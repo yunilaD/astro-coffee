@@ -1,11 +1,88 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import menuData from "../data/menu.json";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Just grab 3 items to feature on the homepage
+const featured = menuData.slice(0, 3);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Fernwood Coffee — Home">
+  <section class="hero">
+    <h1>Slow mornings start here.</h1>
+    <p class="subtitle">
+      Small-batch coffee, fresh pastries, and a quiet corner to sit in.
+    </p>
+    <a class="btn" href="/menu">View the menu</a>
+  </section>
+
+  <section class="featured">
+    <h2>Featured this week</h2>
+    <div class="grid">
+      {
+        featured.map((item) => (
+          <div class="card">
+            <img src={item.image} alt={item.name} />
+            <div class="card-body">
+              <h3>{item.name}</h3>
+              <p class="desc">{item.description}</p>
+              <p class="price">${item.price.toFixed(2)}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <style>
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+    }
+
+    .featured {
+      padding-bottom: 3rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .card-body h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.1rem;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0 0 0.6rem;
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin: 0;
+    }
+  </style>
 </Layout>

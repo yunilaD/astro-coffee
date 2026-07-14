@@ -1,0 +1,66 @@
+[
+    {
+        "id": "d001",
+        "name": "Classic Espresso",
+        "category": "hot",
+        "price": 3.25,
+        "image": "https://www.sharmispassions.com/wp-content/uploads/2012/07/espresso-coffee-recipe022.jpg",
+        "description": "A tight, syrupy shot pulled from a medium-dark roast. Simple and strong."
+    },
+    {
+        "id": "d002",
+        "name": "Vanilla Oat Latte",
+        "category": "hot",
+        "price": 4.75,
+        "image": "https://teainjanuary.com/wp-content/uploads/2024/09/Iced-Vanilla-Oatmilk-Latte-1536x1536.jpg",
+        "description": "Espresso, steamed oat milk, and a touch of house-made vanilla syrup."
+    },
+    {
+        "id": "d003",
+        "name": "Iced Cold Brew",
+        "category": "cold",
+        "price": 4.25,
+        "image": "https://lifemadesweeter.com/wp-content/uploads/How-to-make-Cold-Brew-Coffee-at-home-Recipe-Vegan-Dairy-Free-Paleo-Healthy.jpg",
+        "description": "Steeped for 18 hours, served over ice. Smooth, low acidity, no bitterness."
+    },
+    {
+        "id": "d004",
+        "name": "Matcha Cloud",
+        "category": "cold",
+        "price": 5.0,
+        "image": "https://mayskawaiikitchen.com/wp-content/uploads/2024/08/IMG_1113.jpg",
+        "description": "Ceremonial-grade matcha, cold milk, and a whipped cold foam top."
+    },
+    {
+        "id": "d005",
+        "name": "Cinnamon Roll",
+        "category": "pastry",
+        "price": 3.75,
+        "image": "https://www.abakingjourney.com/wp-content/uploads/2022/11/Coffee-Cinnamon-Rolls-Feature1.jpg",
+        "description": "Baked fresh every morning, finished with a brown butter glaze."
+    },
+    {
+        "id": "d006",
+        "name": "Almond Croissant",
+        "category": "pastry",
+        "price": 4.0,
+        "image": "https://www.shugarysweets.com/wp-content/uploads/2017/06/almond-croissants-recipe.jpg",
+        "description": "Twice-baked and filled with almond cream, dusted with powdered sugar."
+    },
+    {
+        "id": "d007",
+        "name": "Chai Latte",
+        "category": "hot",
+        "price": 4.25,
+        "image": "https://cdn.loveandlemons.com/wp-content/uploads/2025/01/chai-latte.jpg",
+        "description": "A house-spiced chai concentrate steamed with whole milk."
+    },
+    {
+        "id": "d008",
+        "name": "Iced Americano",
+        "category": "cold",
+        "price": 3.5,
+        "image": "https://images.ctfassets.net/v601h1fyjgba/1vlXSpBbgUo9yLzh71tnOT/a1afdbe54a383d064576b5e628035f04/Iced_Americano.jpg",
+        "description": "Espresso over ice, topped with cold water. Crisp and clean."
+    }
+]

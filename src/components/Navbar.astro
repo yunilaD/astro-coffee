@@ -1,0 +1,40 @@
+<header class="site-header">
+  <a class="brand" href="/">☕ Fernwood Coffee</a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/menu">Menu</a>
+    <a href="/about">About</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2rem;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--accent-dark);
+    text-decoration: none;
+  }
+
+  .site-header nav a {
+    margin-left: 1.75rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .site-header nav a:hover {
+    color: var(--accent);
+  }
+</style>

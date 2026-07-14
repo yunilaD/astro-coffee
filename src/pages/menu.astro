@@ -1,0 +1,138 @@
+---
+import Layout from "../layouts/Layout.astro";
+import menuData from "../data/menu.json";
+
+const categories = ["all", "hot", "cold", "pastry"];
+---
+
+<Layout title="Fernwood Coffee — Menu">
+  <h1>Our Menu</h1>
+  <p class="subtitle">
+    Filter by category
+    <!-- this part is powered by client-side JavaScript. -->
+  </p>
+
+  <div class="filters" id="filters">
+    {
+      categories.map((cat) => (
+        <button
+          class="filter-btn"
+          data-category={cat}
+          data-active={cat === "all"}
+        >
+          {cat === "all" ? "All" : cat.charAt(0).toUpperCase() + cat.slice(1)}
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="grid" id="menu-grid">
+    {
+      menuData.map((item) => (
+        <div class="card" data-category={item.category}>
+          <img src={item.image} alt={item.name} />
+          <div class="card-body">
+            <h3>{item.name}</h3>
+            <p class="desc">{item.description}</p>
+            <p class="price">${item.price.toFixed(2)}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <style>
+    .filters {
+      display: flex;
+      gap: 0.75rem;
+      margin: 1.5rem 0 2rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.1rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+
+    .filter-btn[data-active="true"] {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      padding-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 1rem;
+    }
+
+    .card-body h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.1rem;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0 0 0.6rem;
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin: 0;
+    }
+
+    .card.hidden {
+      display: none;
+    }
+  </style>
+
+  <script>
+    // This runs in the browser after the page loads — this is our "interactivity"
+    // without needing a UI framework like React.
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const cards = document.querySelectorAll<HTMLDivElement>(".card");
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const selected = btn.dataset.category;
+
+        // Update active button styling
+        buttons.forEach((b) => (b.dataset.active = "false"));
+        btn.dataset.active = "true";
+
+        // Show/hide cards based on category match
+        cards.forEach((card) => {
+          const matches =
+            selected === "all" || card.dataset.category === selected;
+          card.classList.toggle("hidden", !matches);
+        });
+      });
+    });
+  </script>
+</Layout>
