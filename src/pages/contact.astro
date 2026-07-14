@@ -1,0 +1,133 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Fernwood Coffee — Contact">
+    <section class="contact">
+        <h1>Get in touch</h1>
+        <p class="subtitle">Questions, catering requests, or just say hi.</p>
+
+        <form id="contact-form">
+            <label>
+                Name
+                <input type="text" name="name" required />
+            </label>
+
+            <label>
+                Email
+                <input type="email" name="email" required />
+            </label>
+
+            <label>
+                Message
+                <textarea name="message" rows="5" required></textarea>
+            </label>
+
+            <button type="submit" class="btn">Send message</button>
+
+            <p id="form-status" role="status"></p>
+        </form>
+    </section>
+
+    <style>
+        .contact {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 3rem 0 4rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+            margin-top: 1.5rem;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        input,
+        textarea {
+            font: inherit;
+            padding: 0.6rem 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--card);
+            color: var(--ink);
+        }
+
+        button {
+            align-self: flex-start;
+            border: none;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        #form-status {
+            font-size: 0.9rem;
+            min-height: 1.2em;
+        }
+
+        #form-status[data-state="success"] {
+            color: #2f7d4f;
+        }
+
+        #form-status[data-state="error"] {
+            color: #b23b3b;
+        }
+    </style>
+
+    <script>
+        // This whole block runs in the BROWSER, only when the user submits the form.
+        const form = document.querySelector<HTMLFormElement>("#contact-form");
+        const status =
+            document.querySelector<HTMLParagraphElement>("#form-status");
+
+        form?.addEventListener("submit", async (e) => {
+            e.preventDefault(); // stop the browser's default full-page-reload submit
+
+            const formData = new FormData(form);
+            const payload = {
+                name: formData.get("name"),
+                email: formData.get("email"),
+                message: formData.get("message"),
+            };
+
+            if (status) {
+                status.textContent = "Sending...";
+                status.dataset.state = "";
+            }
+
+            try {
+                const res = await fetch("http://localhost:3000/api/contact", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                });
+
+                if (!res.ok) throw new Error("Server responded with an error");
+
+                await res.json();
+
+                if (status) {
+                    status.textContent = "Message sent — thank you!";
+                    status.dataset.state = "success";
+                }
+                form.reset();
+            } catch (err) {
+                console.error(err);
+                if (status) {
+                    status.textContent =
+                        "Something went wrong. Please try again.";
+                    status.dataset.state = "error";
+                }
+            }
+        });
+    </script>
+</Layout>
