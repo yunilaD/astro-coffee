@@ -1,20 +1,8 @@
 [
   {
-    "name": "Yunila Dissanayake",
-    "email": "yunilad6@gmail.com",
+    "name": "John Doe",
+    "email": "example@email.com",
     "message": "hi",
-    "recievedAt": "2026-07-14T05:38:18.481Z"
-  },
-  {
-    "name": "Yunila Dissanayake",
-    "email": "yunilad6@gmail.com",
-    "message": "hi",
-    "recievedAt": "2026-07-14T05:43:00.061Z"
-  },
-  {
-    "name": "Yunila Dissanayake",
-    "email": "yunilad6@gmail.com",
-    "message": "cgfg",
-    "recievedAt": "2026-07-14T05:49:38.517Z"
+    "recievedAt": "2026-07-14T05:53:20.985Z"
   }
 ]
