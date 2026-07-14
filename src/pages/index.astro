@@ -1,13 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import menuData from "../data/menu.json";
+
+interface MenuItem {
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+  image: string;
+  description: string;
+}
+
+const res = await fetch("http://localhost:3000/api/menu");
+const menuData: MenuItem[] = await res.json();
+
 import Likes from "../components/Like.tsx";
 
-// Just grab 3 items to feature on the homepage
 const featured = menuData.slice(0, 3);
 ---
 
-<Layout title="Fernwood Coffee — Home">
+<Layout title="Astro Coffee — Home">
   <section class="hero">
     <h1>Slow mornings start here.</h1>
     <p class="subtitle">
@@ -108,7 +119,9 @@ const featured = menuData.slice(0, 3);
       max-width: 400px;
       width: 100%;
       box-shadow: 0 4px 12px rgba(44, 35, 27, 0.04);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
     .feedback-card:hover {
@@ -145,7 +158,9 @@ const featured = menuData.slice(0, 3);
       font-size: 0.95rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.2s ease, transform 0.1s ease;
+      transition:
+        background-color 0.2s ease,
+        transform 0.1s ease;
     }
 
     .feedback-card :global(.likes button:hover) {

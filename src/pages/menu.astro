@@ -1,6 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import menuData from "../data/menu.json";
+
+interface MenuItem {
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+  image: string;
+  description: string;
+}
+
+//fetch the api for menu
+const res = await fetch("http://localhost:3000/api/menu");
+const menuData: MenuItem[] = await res.json();
 
 const categories = ["all", "hot", "cold", "pastry"];
 ---
