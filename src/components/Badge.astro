@@ -1,0 +1,35 @@
+---
+interface Props {
+    category: "hot" | "cold" | "pastry" | string;
+}
+const { category } = Astro.props;
+
+// Map each category to a label + color so the component controls its own styling
+const styles: Record<string, { label: string; bg: string; color: string }> = {
+    hot: { label: "Hot", bg: "#f3e0d4", color: "#a2472a" },
+    cold: { label: "Cold", bg: "#dcebe8", color: "#2f6f66" },
+    pastry: { label: "Pastry", bg: "#f0e6d2", color: "#8a6a2f" },
+};
+
+const style = styles[category] ?? {
+    label: category,
+    bg: "#eee",
+    color: "#555",
+};
+---
+
+<span class="badge" style={`background:${style.bg}; color:${style.color};`}>
+    {style.label}
+</span>
+
+<style>
+    .badge {
+        display: inline-block;
+        padding: 0.2rem 0.65rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+    }
+</style>

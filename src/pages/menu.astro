@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Badge from "../components/Badge.astro";
 
 interface MenuItem {
   id: string;
@@ -44,7 +45,10 @@ const categories = ["all", "hot", "cold", "pastry"];
         <div class="card" data-category={item.category}>
           <img src={item.image} alt={item.name} />
           <div class="card-body">
-            <h3>{item.name}</h3>
+            <div class="card-top">
+              <h3>{item.name}</h3>
+              <Badge category={item.category} />
+            </div>
             <p class="desc">{item.description}</p>
             <p class="price">${item.price.toFixed(2)}</p>
           </div>
@@ -105,6 +109,17 @@ const categories = ["all", "hot", "cold", "pastry"];
     .card-body h3 {
       margin: 0 0 0.4rem;
       font-size: 1.1rem;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .card-top h3 {
+      margin: 0;
     }
 
     .desc {
