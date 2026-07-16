@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Testimonial from "../components/Testimonial.astro";
 
 interface MenuItem {
   id: string;
@@ -45,6 +46,26 @@ const featured = menuData.slice(0, 3);
     </div>
   </section>
 
+  <section class="testimonials">
+    <h2>What people say</h2>
+    <div class="testimonial-grid">
+      <Testimonial
+        quote="The oat latte is what got me in the door. The quiet corner table is why I keep coming back."
+        name="Ishara D."
+        role="Regular"
+      />
+      <Testimonial
+        quote="Best almond croissant in the neighborhood, hands down. Worth the walk."
+        name="Marc T."
+        role="Regular"
+      />
+      <Testimonial
+        quote="Good coffee, better playlist. Never the same song twice."
+        name="Anonymous review"
+      />
+    </div>
+  </section>
+
   <section class="feedback-section">
     <div class="feedback-card">
       <h3>Show Some Love</h3>
@@ -60,6 +81,17 @@ const featured = menuData.slice(0, 3);
 
     .featured {
       padding-bottom: 3rem;
+    }
+
+    .testimonials {
+      padding-bottom: 4rem;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
     }
 
     .grid {
