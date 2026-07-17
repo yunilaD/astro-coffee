@@ -11,7 +11,8 @@ interface MenuItem {
   description: string;
 }
 
-const res = await fetch("http://localhost:3000/api/menu");
+const apiUrl = import.meta.env.API_URL || "http://localhost:3000";
+const res = await fetch(`${apiUrl}/api/menu`);
 const menuData: MenuItem[] = await res.json();
 
 import Likes from "../components/Like.tsx";

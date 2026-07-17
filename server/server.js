@@ -7,12 +7,16 @@ import path from "path";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
-//returns the full menu as Json
+app.get("/", (req, res) => {
+    res.send("Astro Coffee API is Running");
+})
+
+//returns the full menu as JSON
 app.get("/api/menu", async (req, res) => {
     try {
         const raw = await readFile(path.join(__dirname, "menu.json"), "utf-8");
