@@ -118,9 +118,12 @@ Pull requests only trigger the `build` job — deployment is restricted to actua
 
 ## Deployment
 
-- **Backend** — deployed to **AWS Elastic Beanstalk** (Node.js platform), reading its port from the `PORT` environment variable Elastic Beanstalk provides
-- **Frontend** — built with `API_URL`/`PUBLIC_API_URL` pointed at the live backend, then the static `dist/` output is uploaded to an **S3** bucket and served through **CloudFront** (HTTPS, edge caching, and a CloudFront Function that rewrites folder-style URLs like `/menu` to `/menu/index.html`)
+Deployment is fully automated via the CI/CD pipeline above — pushing to `master` is the only step required.
 
+- **Backend** — AWS Elastic Beanstalk (Node.js platform), reads its port from the `PORT` environment variable Elastic Beanstalk provides
+- **Frontend** — built against the live backend using `API_URL`/`PUBLIC_API_URL`, uploaded to an **S3** bucket, served through **CloudFront** (HTTPS, edge caching, and a CloudFront Function that rewrites folder-style URLs like `/menu` to `/menu/index.html`)
+
+AWS credentials for the pipeline are stored as encrypted GitHub Secrets, scoped to a dedicated IAM user with permissions limited to this project's S3 bucket, CloudFront distribution, and Elastic Beanstalk application.
 ## Notes
 
 All content — the shop name, menu items, and story — is fictional. This is a learning project, not a real business.
