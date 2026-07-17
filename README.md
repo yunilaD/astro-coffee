@@ -106,15 +106,15 @@ Runs at `http://localhost:4321`.
 | `GET` | `/api/menu` | Returns the full coffee/pastry menu as JSON |
 | `POST` | `/api/contact` | Accepts `{ name, email, message }`, stores it in `server/messages.json` |
 
-## CI
+## CI/CD
 
-Every push to `master` runs a GitHub Actions pipeline (`.github/workflows/ci.yml`) that:
-1. Installs and syntax-checks the backend
-2. Starts the Express server
-3. Waits until it's actually reachable
-4. Installs frontend dependencies and runs a full Astro build against the running backend
+Every push to `master` runs a GitHub Actions pipeline (`.github/workflows/ci.yml`) with three jobs:
 
-If any step fails, the pipeline fails — catching issues like broken builds or dependency mismatches before they reach production.
+1. **`build`** — installs and syntax-checks the backend, starts it, waits until it's reachable, then runs a full Astro build against it. This is the safety gate — nothing deploys if this fails.
+2. **`deploy-backend`** *(runs only on push to `master`, after `build` passes)* — zips the Express server and deploys it to AWS Elastic Beanstalk.
+3. **`deploy-frontend`** *(runs after both `build` and `deploy-backend` succeed)* — rebuilds the Astro site against the live production backend, uploads the result to S3, and invalidates the CloudFront cache so changes go live immediately.
+
+Pull requests only trigger the `build` job — deployment is restricted to actual pushes on `master`, so opening a PR never touches the live site.
 
 ## Deployment
 
