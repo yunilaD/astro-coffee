@@ -1,6 +1,6 @@
 # Astro Coffee
 
-A fictional coffee shop site built with Astro + Express — practice project covering static rendering, reusable components, a real frontend-to-backend API flow, CI, and a live AWS deployment.
+A fictional coffee shop site built with Astro + Express — practice project covering static rendering, reusable components, a real frontend-to-backend API flow, CICD, and a live AWS deployment.
 
 **Live site:** https://d1eqe5ok1xaa5k.cloudfront.net
 
