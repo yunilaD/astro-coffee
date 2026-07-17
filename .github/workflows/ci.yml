@@ -3,9 +3,9 @@ name: CI
 # Trigger: run this pipeline on every push and every pull request to main
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
   build:
